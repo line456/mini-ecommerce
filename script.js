@@ -1,26 +1,20 @@
-const { createElement } = require("react");
-
-function card (data){
-    const elemento = document.createElement("div");
-    const image = document.createElement ("img");
-    const conteudo = document.createElement("div");
-    const titulo = document.createElement ("h3");
-    const paragrafo =  document.createElement ("p");
-    const botao = document.createElement ("button"); 
-}
-
-
-
-
-
-
-
-
 async function produtos () {
-    const resposta = await fetch("https://fakestoreapi.com/products")
-    const data = await resposta.json();
+    const Resposta = await fetch("https://fakestoreapi.com/products")
+    const Data = await Resposta.json();
     
-    const container = document.querySelector('.grid')
+    const Container = document.querySelector('.grid')
+   Data.forEach(card => {
+     Container.innerHTML += `
+    <div class="card">
+      <img src="${card.image}">
+      <div class="card-content">
+        <h3>${card.title}</h3>
+        <p class="price">R$ ${card.price} </p>
+        <button>Adicionar ao Carrinho</button>
+      </div>
+    </div>`
+    
+   });
 
 }
 produtos()
